@@ -1,7 +1,8 @@
 from typing import Union
-
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+
+import requests
 
 app = FastAPI()
 
@@ -14,9 +15,8 @@ class Item(BaseModel):
 items = {}
 
 @app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
+def root():
+    URL = "https://bigdata.kepco.co.kr/openapi/v1/powerUsage/industryType.do?year=2020&month=11&metroCd=11&cityCd=110&bizCd=C&apiKey=9y8h8TX0vKGMY6hMRibiurfOGfySlt08cx43AN8x&returnType=json"
 @app.post("/items/{item_id}")
 def create_item(item_id: int, item: Item):
     if item_id in items:
