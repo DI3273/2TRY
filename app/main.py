@@ -1,18 +1,8 @@
-from typing import Union
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from fastapi import FastAPI
 
 import requests
 
 app = FastAPI()
-
-class Item(BaseModel):
-    name: str
-    price: float
-    is_offer: Union[bool, None] = None
-
-# 미리 생성한 빈 객체를 관리하기 위한 딕셔너리
-items = {}
 
 @app.get("/")
 def root():
